@@ -20,11 +20,16 @@ const limiter = rateLimit({
   max: 100,
 });
 
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://project.mestoyandex.nomoredomainsrocks.ru'],
+  credentials: true,
+}));
+
 app.use(helmet());
 
-app.get('/crash-test', () => {
-  setTimeout(() => { throw new Error('Сервер сейчас упадёт'); }, 0);
-});
+// app.get('/crash-test', () => {
+//   setTimeout(() => { throw new Error('Сервер сейчас упадёт'); }, 0);
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
